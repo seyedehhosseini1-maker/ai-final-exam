@@ -76,3 +76,7 @@ The final generated image contains the added Okapi.
 ## Conclusion
 
 ChatGPT was used as a generative AI tool to modify the original image by adding an Okapi while keeping the rest of the image unchanged.
+
+# Task 3 – Chatbot Graph
+
+![](graph.png)
