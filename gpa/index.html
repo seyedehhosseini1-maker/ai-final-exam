@@ -1,177 +1,340 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Computer Engineering GPA Calculator</title>
+<title>GPA Calculator — Computer Engineering</title>
 
 <style>
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 30px;
-    background: #f5f5f5;
-}
-
-h1 {
-    color: #222;
-}
-
-.program {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 20px;
+:root {
+--bg:#0c1020;
+--panel:#151a2e;
+--panel2:#1c2340;
+--line:#2a3358;
+--text:#eef1ff;
+--muted:#9aa3c7;
+--accent:#6c8cff;
+--accent2:#4a5fd4;
+--green:#3dd68c;
+--red:#ff7b7b;
 }
 
 
-/* Course table */
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-}
-
-th, td {
-    border: 1px solid #999;
-    padding: 8px;
-    text-align: center;
-}
-
-th {
-    background: #ddd;
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
 }
 
 
-/* Tooltip */
+body{
 
-.info {
-    display: inline-block;
-    position: relative;
-    cursor: pointer;
-}
+font-family:"Segoe UI",Arial,sans-serif;
 
+background:
+radial-gradient(900px 500px at 90% -10%,#24306a 0,transparent 55%),
+var(--bg);
 
-.info-icon {
+color:var(--text);
 
-    background: black;
-    color: white;
-
-    border-radius: 50%;
-
-    width:20px;
-    height:20px;
-
-    display:inline-flex;
-
-    justify-content:center;
-    align-items:center;
+padding:30px;
 
 }
 
 
 
-.tooltip {
+.wrap{
 
-    display:none;
+max-width:1100px;
 
-    position:absolute;
-
-    left:25px;
-
-    top:0;
-
-    width:500px;
-
-    max-height:450px;
-
-    overflow:auto;
-
-    background:white;
-
-    border:1px solid #777;
-
-    padding:15px;
-
-    z-index:10;
-
-    font-weight:normal;
-
-    text-align:left;
+margin:auto;
 
 }
 
 
 
-.info:hover .tooltip {
+h1{
 
-    display:block;
+font-size:30px;
 
-}
-
-
-
-.gpaScaleTable {
-
-    width:100%;
-
-    border-collapse:collapse;
-
-}
-
-
-.gpaScaleTable td,
-.gpaScaleTable th {
-
-    border:1px solid #777;
-
-    padding:5px;
+margin-bottom:10px;
 
 }
 
 
 
-button {
+.sub{
 
-    margin-top:20px;
+color:var(--muted);
 
-    margin-right:10px;
-
-    padding:12px 20px;
-
-    font-size:16px;
-
-    cursor:pointer;
+margin-bottom:20px;
 
 }
 
 
 
-.description {
+.program-banner{
 
-    margin-top:20px;
+background:linear-gradient(120deg,var(--accent2),#6a3fb8);
 
-    background:white;
+padding:20px;
 
-    border:1px solid #aaa;
+border-radius:14px;
 
-    padding:12px;
+margin-bottom:20px;
+
+}
+
+
+
+.program-banner .label{
+
+font-size:12px;
+
+color:white;
 
 }
 
 
 
-.result {
+.program-banner .name{
 
-    margin-top:20px;
+font-size:24px;
 
-    font-size:22px;
-
-    font-weight:bold;
+font-weight:bold;
 
 }
 
+
+
+.card{
+
+background:var(--panel);
+
+border-radius:14px;
+
+border:1px solid var(--line);
+
+overflow:hidden;
+
+}
+
+
+
+.card-head{
+
+padding:15px;
+
+display:flex;
+
+justify-content:space-between;
+
+border-bottom:1px solid var(--line);
+
+}
+
+
+
+.info-btn{
+
+width:30px;
+
+height:30px;
+
+border-radius:50%;
+
+cursor:pointer;
+
+background:none;
+
+border:1px solid var(--accent);
+
+color:var(--accent);
+
+}
+
+
+
+.info-wrap{
+
+position:relative;
+
+}
+
+
+
+.tooltip{
+
+display:none;
+
+position:absolute;
+
+right:0;
+
+top:40px;
+
+width:520px;
+
+max-height:450px;
+
+overflow:auto;
+
+background:white;
+
+color:#111;
+
+padding:20px;
+
+border-radius:10px;
+
+z-index:20;
+
+}
+
+
+
+.tooltip.show{
+
+display:block;
+
+}
+
+
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+
+
+.data th,
+.data td{
+
+padding:10px;
+
+border-bottom:1px solid var(--line);
+
+text-align:left;
+
+}
+
+
+
+.data th{
+
+color:var(--muted);
+
+}
+
+
+
+.scroll{
+
+max-height:550px;
+
+overflow:auto;
+
+}
+
+
+
+.actions{
+
+margin-top:20px;
+
+display:flex;
+
+gap:15px;
+
+flex-wrap:wrap;
+
+}
+
+
+
+button.calc{
+
+padding:12px 20px;
+
+border:none;
+
+border-radius:10px;
+
+background:linear-gradient(120deg,var(--accent),var(--accent2));
+
+color:white;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+
+
+button.ai{
+
+background:linear-gradient(120deg,#2bb673,#1d8a57);
+
+}
+
+
+
+.ai-note{
+
+margin-top:15px;
+
+background:#332b16;
+
+padding:15px;
+
+border-radius:10px;
+
+color:#f5c14e;
+
+}
+
+
+
+.result-box{
+
+margin-top:20px;
+
+background:var(--panel2);
+
+padding:20px;
+
+border-radius:12px;
+
+}
+
+
+
+.gpa-val{
+
+font-size:35px;
+
+font-weight:bold;
+
+color:var(--green);
+
+}
+
+
+
+.detail{
+
+color:var(--muted);
+
+margin-top:5px;
+
+}
 
 
 </style>
@@ -182,138 +345,26 @@ button {
 <body>
 
 
-<h1>
-GPA Calculator
-</h1>
+<div class="wrap">
 
 
+<h1>Student GPA Calculator</h1>
 
-<div class="program">
-
-
-Program: Computer Engineering
-
-
-
-<div class="info">
-
-<span class="info-icon">?</span>
-
-
-<div class="tooltip">
-
-
-<h3>
-LEPL Ilia State University
-<br>
-GPA Calculation Rules
-</h3>
-
-
-<p>
-At Ilia State University, GPA is calculated by dividing the sum of
-the products of Grade Point (GP) earned in each course and its credits
-by the total number of credits taken by the student.
-</p>
-
-
-<p>
-<b>
-GPA = Σ(Course GP × Course Credits) / Σ(Total Course Credits)
-</b>
-</p>
-
-
-<p>
-GP represents the converted score of a course grade on a 4-point scale.
+<p class="sub">
+Ilia State University · Official GPA Formula · Transcript Based
 </p>
 
 
 
-<table class="gpaScaleTable">
+<div class="program-banner">
 
-<tr>
-<th>Grade</th>
-<th>Score Range</th>
-<th>GP</th>
-</tr>
-
-
-<tr>
-<td>A+</td>
-<td>96-100</td>
-<td>4.00</td>
-</tr>
-
-
-<tr>
-<td>A</td>
-<td>91-95</td>
-<td>3.92-4.00</td>
-</tr>
-
-
-<tr>
-<td>B</td>
-<td>81-90</td>
-<td>3.50-3.92</td>
-</tr>
-
-
-<tr>
-<td>C</td>
-<td>71-80</td>
-<td>2.67-3.50</td>
-</tr>
-
-
-<tr>
-<td>D</td>
-<td>61-70</td>
-<td>1.83-2.67</td>
-</tr>
-
-
-<tr>
-<td>E</td>
-<td>51-60</td>
-<td>1.00</td>
-</tr>
-
-
-<tr>
-<td>F</td>
-<td>0-50</td>
-<td>0.00</td>
-</tr>
-
-
-</table>
-
-
-
-<p>
-
-Scores from 51-60 always equal 1.00 GP.
-
-Grades between 61 and 95 increase evenly by approximately 0.08.
-
-Scores from 96-100 always equal 4.00 GP.
-
-</p>
-
-
-<p>
-
-Final GPA is rounded to the nearest tenth and is reflected in
-the diploma supplement.
-
-</p>
-
-
-
+<div class="label">
+Current academic program
 </div>
 
+
+<div class="name" id="programName">
+Computer Engineering
 </div>
 
 
@@ -321,7 +372,40 @@ the diploma supplement.
 
 
 
-<table id="coursesTable">
+<div class="card">
+
+
+<div class="card-head">
+
+
+<h2>My Courses</h2>
+
+
+<div class="info-wrap">
+
+<button class="info-btn" id="infoBtn">
+i
+</button>
+
+
+<div class="tooltip" id="gpaTooltip">
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<div class="scroll">
+
+
+<table class="data">
+
+
+<thead>
 
 <tr>
 
@@ -335,189 +419,308 @@ the diploma supplement.
 
 </tr>
 
+</thead>
+
+
+<tbody id="courseBody">
+
+</tbody>
+
 
 </table>
 
 
+</div>
 
-<div class="description">
 
-<b>
+</div>
+
+
+<div class="actions">
+
+
+<button class="calc" id="calcBtn">
+Calculate
+</button>
+
+
+<button class="calc ai" id="calcAiBtn">
+Calculate with Introduction to AI
+</button>
+
+
+</div>
+
+
+<div class="ai-note">
+
+<strong>
 Calculate with Introduction to AI:
-</b>
+</strong>
 
-<br><br>
+<br>
 
-This button assumes the final score of Introduction to Artificial Intelligence
-is calculated as:
+Assumes Introduction to AI final score:
 
-<br><br>
+<br>
 
-<b>
-Current accumulated points (70) + Final exam points (30) = 100
-</b>
-
-<br><br>
-
-The GPA is recalculated using this assumed final score.
+70 accumulated points + 30 final exam points = 100
 
 </div>
 
 
 
-<button onclick="calculateGPA(false)">
-Calculate
-</button>
+<div class="result-box" id="resultBox">
 
+<div class="detail">
+Click a button to calculate GPA.
+</div>
 
-<button onclick="calculateGPA(true)">
-Calculate with Introduction to AI
-</button>
 
+</div>
+<script>
 
+const PROGRAM = "Computer Engineering";
 
-<div id="result" class="result"></div>
 
+const courses = [
 
+{course:"Calculus I (ENG)",credit:6,grade:67,passed:true},
 
-<script> 
-    
-let courses = [
+{course:"Calculus II (ENG)",credit:6,grade:52.90,passed:true},
 
-["Calculus I (ENG)",6,67,true],
+{course:"Calculus III (ENG)",credit:6,grade:64,passed:true},
 
-["Calculus II (ENG)",6,52.9,true],
+{course:"Introduction to Linear Algebra (ENG)",credit:6,grade:71,passed:true},
 
-["Calculus III (ENG)",6,64,true],
+{course:"Introduction to Modern Thought I (ENG)",credit:6,grade:71,passed:true},
 
-["Introduction to Linear Algebra (ENG)",6,71,true],
+{course:"Introduction to Programming (ENG)",credit:6,grade:82.70,passed:true},
 
-["Introduction to Modern Thought I (ENG)",6,71,true],
+{course:"Practical Course of Georgian for Foreigners (A1.1a) (ENG)",credit:6,grade:86.40,passed:true},
 
-["Introduction to Programming (ENG)",6,82.7,true],
+{course:"Practical Course of Georgian for Foreigners (A1.1b) (ENG)",credit:6,grade:68.30,passed:true},
 
-["Practical Course of Georgian for Foreigners (A1.1a) (ENG)",6,86.4,true],
+{course:"Academic Techniques (ENG)",credit:6,grade:66,passed:true},
 
-["Practical Course of Georgian for Foreigners (A1.1b) (ENG)",6,68.3,true],
+{course:"Algorithms and Data Structures (ENG)",credit:6,grade:61,passed:true},
 
-["Academic Techniques (ENG)",6,66,true],
+{course:"Architecture and Programming of Microprocessors (ENG)",credit:6,grade:77,passed:true},
 
-["Algorithms and Data Structures (ENG)",6,61,true],
+{course:"Basics of Entrepreneurship (ENG)",credit:6,grade:89,passed:true},
 
-["Architecture and Programming of Microprocessors (ENG)",6,77,true],
+{course:"Basics of Physics I (ENG)",credit:6,grade:87,passed:true},
 
-["Basics of Entrepreneurship (ENG)",6,89,true],
+{course:"Basics of Physics II (ENG)",credit:6,grade:85,passed:true},
 
-["Basics of Physics I (ENG)",6,87,true],
+{course:"Calculus II (ENG)",credit:6,grade:0,passed:false},
 
-["Basics of Physics II (ENG)",6,85,true],
+{course:"Circuit Analysis I (ENG)",credit:6,grade:82,passed:true},
 
+{course:"Circuit Analysis II (ENG)",credit:6,grade:54,passed:true},
 
-["Calculus II (ENG)",6,0,false],
+{course:"Computational and Statistical Methods (ENG)",credit:6,grade:70,passed:true},
 
+{course:"Computer Organization (ENG)",credit:6,grade:37.50,passed:false},
 
-["Circuit Analysis I (ENG)",6,82,true],
+{course:"Computer Organization (ENG)",credit:6,grade:66.20,passed:true},
 
-["Circuit Analysis II (ENG)",6,54,true],
+{course:"Computer and Data Networks (ENG)",credit:6,grade:93,passed:true},
 
-["Computational and Statistical Methods (ENG)",6,70,true],
+{course:"Computer and Society (ENG)",credit:6,grade:64,passed:false},
 
+{course:"Cyberlaw and Ethics (ENG)",credit:6,grade:62.20,passed:true},
 
-["Computer Organization (ENG)",6,37.5,false],
+{course:"Digital Circuits (ENG)",credit:6,grade:92,passed:true},
 
+{course:"Embedded Systems (ENG)",credit:6,grade:66,passed:true},
 
-["Computer Organization (ENG)",6,66.2,true],
+{course:"IT Project Management (ENG)",credit:6,grade:86,passed:true},
 
+{course:"Introduction To Computer Modeling (ENG)",credit:6,grade:51,passed:true},
 
-["Computer and Data Networks (ENG)",6,93,true],
 
+{
+course:"Introduction to Artificial Intelligence (ENG)",
+credit:6,
+grade:70,
+passed:false,
+isAI:true
+},
 
-["Computer and Society (ENG)",6,64,false],
 
+{course:"Introduction to Cyber Security (ENG)",credit:6,grade:91,passed:true},
 
-["Cyberlaw and Ethics (ENG)",6,62.2,true],
+{course:"Introduction to General Chemistry (Including Lab) (ENG)",credit:8,grade:89,passed:true},
 
+{course:"Introduction to Operating Systems (ENG)",credit:6,grade:89,passed:true},
 
-["Digital Circuits (ENG)",6,92,true],
+{course:"Mathematical Foundation of Computing (ENG)",credit:6,grade:74,passed:true},
 
+{course:"Object Oriented Programming (ENG)",credit:6,grade:69,passed:true},
 
-["Embedded Systems (ENG)",6,66,true],
+{course:"Principles of Numerical Methods (ENG)",credit:6,grade:85,passed:true},
 
+{course:"Signals and Systems (ENG)",credit:6,grade:69,passed:true},
 
-["IT Project Management (ENG)",6,86,true],
+{course:"System Programming (ENG)",credit:6,grade:82.72,passed:true},
 
-
-["Introduction To Computer Modeling (ENG)",6,51,true],
-
-
-["Introduction to Artificial Intelligence (ENG)",6,70,false],
-
-
-["Introduction to Cyber Security (ENG)",6,91,true],
-
-
-["Introduction to General Chemistry (Including Lab) (ENG)",8,89,true],
-
-
-["Introduction to Operating Systems (ENG)",6,89,true],
-
-
-["Mathematical Foundation of Computing (ENG)",6,74,true],
-
-
-["Object Oriented Programming (ENG)",6,69,true],
-
-
-["Principles of Numerical Methods (ENG)",6,85,true],
-
-
-["Signals and Systems (ENG)",6,69,true],
-
-
-["System Programming (ENG)",6,82.72,true],
-
-
-["Systems, Sustainability, and Climate change - Introduction (ENG)",6,83,true],
+{course:"Systems, Sustainability, and Climate change - Introduction (ENG)",credit:6,grade:83,passed:true},
 
 
 
 /* Additional Computer Engineering courses */
 
-["Advanced Computer Architecture (ENG)",6,100,true],
+{course:"Advanced Computer Architecture (ENG)",credit:6,grade:100,passed:true,added:true},
 
-["Machine Learning (ENG)",6,100,true],
+{course:"Machine Learning (ENG)",credit:6,grade:100,passed:true,added:true},
 
-["Digital Signal Processing (ENG)",6,100,true],
+{course:"Computer Vision (ENG)",credit:6,grade:100,passed:true,added:true},
 
-["Robotics and Embedded AI (ENG)",6,100,true],
+{course:"Digital Signal Processing (ENG)",credit:6,grade:100,passed:true,added:true},
 
-["Computer Vision (ENG)",6,100,true]
+{course:"Robotics and Embedded Systems (ENG)",credit:6,grade:100,passed:true,added:true}
 
 
 ];
 
-function loadTable(){
 
 
-    let table = document.getElementById("coursesTable");
+const GPA_TOOLTIP_HTML = `
+
+<h3>LEPL Ilia State University</h3>
+
+<h3>GPA Calculation Rules</h3>
 
 
-    courses.forEach(course => {
+<p>
+
+GPA is calculated by dividing the sum of the products of the Grade Point (GP)
+earned in each course and its credits by the total number of credits:
+
+</p>
 
 
-        let row = table.insertRow();
+<p>
+<b>
+GPA = Σ(Course GP × Course Credits) / Σ(Total Course Credits)
+</b>
+</p>
 
 
-        row.insertCell(0).innerHTML = course[0];
-
-        row.insertCell(1).innerHTML = course[1];
-
-        row.insertCell(2).innerHTML = course[2];
-
-        row.insertCell(3).innerHTML = course[3] ? "Yes" : "No";
+<p>
+GP represents the converted grade value on a 4-point scale.
+</p>
 
 
-    });
+<table>
+
+<tr>
+<th>Grade</th>
+<th>Score</th>
+<th>GP</th>
+</tr>
+
+
+<tr><td>A+</td><td>96-100</td><td>4.00</td></tr>
+
+<tr><td>A</td><td>91-95</td><td>3.92</td></tr>
+
+<tr><td>B</td><td>81-90</td><td>3.50</td></tr>
+
+<tr><td>C</td><td>71-80</td><td>2.67</td></tr>
+
+<tr><td>D</td><td>61-70</td><td>1.83</td></tr>
+
+<tr><td>E</td><td>51-60</td><td>1.00</td></tr>
+
+<tr><td>F</td><td>0-50</td><td>0.00</td></tr>
+
+
+</table>
+
+
+<p>
+
+E grades from 51-60 always equal 1.00 GP.
+Grades from 61-95 increase by approximately 1/12.
+A+ grades from 96-100 always equal 4.00 GP.
+
+</p>
+
+
+<p>
+Final GPA is rounded to the nearest tenth.
+</p>
+
+`;
+
+
+
+function scoreToGP(score){
+
+if(score<=50)
+return 0.00;
+
+
+if(score<=60)
+return 1.00;
+
+
+if(score>=96)
+return 4.00;
+
+
+if(score<=70)
+return 1.83 + (score-61)*(0.84/9);
+
+
+if(score<=80)
+return 2.67 + (score-71)*(0.83/9);
+
+
+if(score<=90)
+return 3.50 + (score-81)*(0.42/9);
+
+
+return 3.92 + (score-91)*(0.08/4);
+
+}
+
+
+
+function renderCourses(){
+
+
+const body=document.getElementById("courseBody");
+
+
+body.innerHTML="";
+
+
+courses.forEach(c=>{
+
+
+let row=document.createElement("tr");
+
+
+row.innerHTML=`
+
+<td>${c.course}</td>
+
+<td>${c.credit}</td>
+
+<td>${c.grade}</td>
+
+<td>${c.passed ? "Yes":"No"}</td>
+
+`;
+
+
+body.appendChild(row);
+
+
+});
 
 
 }
@@ -525,73 +728,55 @@ function loadTable(){
 
 
 
-/*
-
-Ilia State University GP conversion
-
-96-100  = 4.00
-
-91-95   = 3.92 - 4.00
-
-81-90   = 3.50 - 3.92
-
-71-80   = 2.67 - 3.50
-
-61-70   = 1.83 - 2.67
-
-51-60   = 1.00
-
-0-50    = 0.00
-
-*/
+function calculateGPA(useAI=false){
 
 
-function gradePoint(score){
+let totalPoints=0;
+
+let totalCredits=0;
 
 
-    if(score >= 96){
 
-        return 4.00;
-
-    }
+courses.forEach(c=>{
 
 
-    if(score >= 91){
+let passed=c.passed;
 
-        return 3.92 + ((score - 91) * (0.08 / 4));
-
-    }
+let grade=c.grade;
 
 
-    if(score >= 81){
 
-        return 3.50 + ((score - 81) * (0.42 / 9));
+if(useAI && c.isAI){
 
-    }
+grade=100;
 
+passed=true;
 
-    if(score >= 71){
-
-        return 2.67 + ((score - 71) * (0.83 / 9));
-
-    }
+}
 
 
-    if(score >= 61){
 
-        return 1.83 + ((score - 61) * (0.84 / 9));
-
-    }
+if(passed){
 
 
-    if(score >= 51){
-
-        return 1.00;
-
-    }
+let gp=scoreToGP(grade);
 
 
-    return 0.00;
+totalPoints += gp*c.credit;
+
+
+totalCredits += c.credit;
+
+
+}
+
+
+
+});
+
+
+
+return totalPoints/totalCredits;
 
 
 }
@@ -599,89 +784,112 @@ function gradePoint(score){
 
 
 
-
-function calculateGPA(aiMode){
-
-
-    let totalPoints = 0;
-
-    let totalCredits = 0;
+function showResult(gpa,text){
 
 
+document.getElementById("resultBox").innerHTML=`
 
-    courses.forEach(course => {
-
-
-
-        let name = course[0];
-
-        let credit = course[1];
-
-        let score = course[2];
-
-        let passed = course[3];
+<div class="gpa-val">
+${gpa.toFixed(1)}
+</div>
 
 
+<div class="detail">
 
-        /*
-        Special AI calculation
+${text}
 
-        Current AI score = 70
-        Final exam = 30
+</div>
 
-        New score = 100
-        */
-
-
-        if(name === "Introduction to Artificial Intelligence (ENG)"
-            && aiMode === true){
-
-
-            score = 100;
-
-            passed = true;
-
-
-        }
-
-
-
-        if(passed){
-
-
-            let gp = gradePoint(score);
-
-
-            totalPoints += gp * credit;
-
-
-            totalCredits += credit;
-
-
-        }
-
-
-
-    });
-
-
-
-    let gpa = totalPoints / totalCredits;
-
-
-
-    document.getElementById("result").innerHTML =
-
-    "Calculated GPA: " + gpa.toFixed(1);
-
+`;
 
 }
 
 
 
 
+document.getElementById("programName").innerHTML=PROGRAM;
 
-loadTable();
+
+
+document.getElementById("gpaTooltip").innerHTML=GPA_TOOLTIP_HTML;
+
+
+
+const infoBtn=document.getElementById("infoBtn");
+
+const tooltip=document.getElementById("gpaTooltip");
+
+
+
+infoBtn.onclick=function(){
+
+tooltip.classList.toggle("show");
+
+};
+
+
+
+infoBtn.onmouseenter=function(){
+
+tooltip.classList.add("show");
+
+};
+
+
+
+infoBtn.onmouseleave=function(){
+
+tooltip.classList.remove("show");
+
+};
+
+
+
+
+document.getElementById("calcBtn").onclick=function(){
+
+
+let gpa=calculateGPA(false);
+
+
+showResult(
+
+gpa,
+
+"Calculated using completed passed courses from the transcript."
+
+);
+
+
+};
+
+
+
+
+
+document.getElementById("calcAiBtn").onclick=function(){
+
+
+let gpa=calculateGPA(true);
+
+
+showResult(
+
+gpa,
+
+"Introduction to AI assumed score: 70 accumulated points + 30 final exam points = 100."
+
+);
+
+
+};
+
+
+
+
+
+renderCourses();
+
 
 
 </script>
